@@ -17,6 +17,9 @@ jobs:
       - name: Accept Android licenses
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses || true
 
+      - name: Remove Windows-only Java path
+        run: sed -i '/org.gradle.java.home/d' gradle.properties
+
       - name: Build debug APK
         run: |
           chmod +x gradlew
